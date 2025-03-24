@@ -2,6 +2,7 @@
 resolver = "3"
 members = [
   "from-via",
+  "prockit",
 ]
 
 [workspace.package]
