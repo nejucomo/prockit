@@ -1,13 +1,5 @@
-[package]
-name = "from-via"
-version = "0.1.0"
-edition = "2024"
-
-[lib]
-proc-macro = true
-
-[dependencies]
-derive_more = { version = "2.0.1", features = ["constructor", "from"] }
-proc-macro2 = "1.0.94"
-quote = "1.0.40"
-syn = { version = "2.0.100", features = ["full"] }
+[workspace]
+resolver = "3"
+members = [
+  "from-via",
+]
