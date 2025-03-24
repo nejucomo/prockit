@@ -1,13 +1,13 @@
 [package]
 name = "from-via"
 version = "0.1.0"
-edition = "2024"
+edition.workspace = true
 
 [lib]
 proc-macro = true
 
 [dependencies]
-derive_more = { version = "2.0.1", features = ["constructor", "from"] }
-proc-macro2 = "1.0.94"
-quote = "1.0.40"
-syn = { version = "2.0.100", features = ["full"] }
+derive_more = { workspace = true, features = ["constructor", "from"] }
+proc-macro2.workspace = true
+quote.workspace = true
+syn = { workspace = true, features = ["full"] }

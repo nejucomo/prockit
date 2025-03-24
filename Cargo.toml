@@ -3,3 +3,12 @@ resolver = "3"
 members = [
   "from-via",
 ]
+
+[workspace.package]
+edition = "2024"
+
+[workspace.dependencies]
+derive_more = "2.0.1"
+proc-macro2 = "1.0.94"
+quote = "1.0.40"
+syn = "2.0.100"
