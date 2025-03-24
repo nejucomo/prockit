@@ -1,14 +1,9 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
+use proc_macro::TokenStream;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+mod pdef;
+mod pm2;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+#[proc_macro_derive(From, attributes(from_via))]
+pub fn derive_from_via(input: TokenStream) -> TokenStream {
+    pm2::derive_from_via(input.into()).into()
 }
