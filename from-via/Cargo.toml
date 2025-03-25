@@ -7,6 +7,7 @@ edition.workspace = true
 proc-macro = true
 
 [dependencies]
+prockit.workspace = true
 derive_more = { workspace = true, features = ["constructor", "from"] }
 proc-macro2.workspace = true
 quote.workspace = true

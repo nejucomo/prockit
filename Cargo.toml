@@ -9,6 +9,7 @@ members = [
 edition = "2024"
 
 [workspace.dependencies]
+prockit = { version = "0.1.0", path = "prockit" }
 derive_more = "2.0.1"
 proc-macro2 = "1.0.94"
 quote = "1.0.40"
