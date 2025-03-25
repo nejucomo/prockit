@@ -1,9 +1,10 @@
 use proc_macro2::TokenStream;
 use quote::ToTokens;
 
-/// A type which implements `derive` for a given trait
-pub trait DeriveImpls: Sized + ToTokens {
-    fn derive_impls<T>(input: T) -> T
+/// An implementation of a `derive(MyTrait)` proc macro
+pub trait ProcMacroDeriveBase: Sized + ToTokens {
+    /// The main entrypoint for the proc macro which can take and can return `proc_macro::TokenStream`
+    fn proc_macro_derive_base<T>(input: T) -> T
     where
         TokenStream: From<T>,
         T: From<TokenStream>,
@@ -15,5 +16,6 @@ pub trait DeriveImpls: Sized + ToTokens {
             .into()
     }
 
+    /// Attempt to construct self from a [syn::DeriveInput], assuming it meets the requirements of this proc macro.
     fn try_from_derive_input(di: syn::DeriveInput) -> syn::Result<Self>;
 }

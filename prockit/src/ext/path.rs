@@ -1,7 +1,11 @@
 use easy_ext::ext;
 
+/// Extend [syn::Path] with helper methods
 #[ext(PathExt)]
 pub impl syn::Path {
+    /// Return true if this path is "simple" and equal to `s`
+    ///
+    /// See [Self::ref_simple_path] for the definition of "simple".
     fn eq_simple_path(&self, s: &str) -> bool {
         self.ref_simple_path().map(|id| id == s).unwrap_or(false)
     }

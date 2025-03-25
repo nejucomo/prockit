@@ -1,5 +1,5 @@
 use proc_macro2::TokenStream;
-use prockit::{DeriveImplsWithAttrs, DeriveWithAttrsInput};
+use prockit::{PmdInput, ProcMacroDerive};
 use quote::{ToTokens, quote};
 
 use crate::target::TargetVia;
@@ -10,13 +10,11 @@ pub struct FromVia {
     pub targets: Vec<TargetVia>,
 }
 
-impl DeriveImplsWithAttrs for FromVia {
+impl ProcMacroDerive for FromVia {
     type Attr = TargetVia;
 
-    fn try_from_derive_with_attrs_input(
-        dwai: DeriveWithAttrsInput<TargetVia>,
-    ) -> syn::Result<Self> {
-        let DeriveWithAttrsInput {
+    fn try_from_derive_with_attrs_input(dwai: PmdInput<TargetVia>) -> syn::Result<Self> {
+        let PmdInput {
             attrs: targets,
             ident,
             generics,

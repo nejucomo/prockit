@@ -1,3 +1,4 @@
+//! Some extensions to types from the underlying dependencies
 mod path;
 mod spanerror;
 

@@ -1,5 +1,5 @@
 use proc_macro::TokenStream;
-use prockit::DeriveImpls as _;
+use prockit::ProcMacroDeriveBase as _;
 
 use crate::fvia::FromVia;
 
@@ -8,5 +8,5 @@ mod target;
 
 #[proc_macro_derive(From, attributes(from_via))]
 pub fn derive_from_via(input: TokenStream) -> TokenStream {
-    FromVia::derive_impls(input)
+    FromVia::proc_macro_derive_base(input)
 }

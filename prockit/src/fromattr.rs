@@ -1,8 +1,12 @@
+#![allow(missing_docs)]
+
 use syn::parse::Parse;
 
 use crate::ext::{PathExt as _, SpanErrorExt as _};
 
+/// An attribute type for [ProcMacroDerive](crate::ProcMacroDerive) implementations
 pub trait FromAttr: Parse {
+    /// The name of this attr
     fn attr_name() -> &'static str;
 
     fn try_from_attrs(attrs: Vec<syn::Attribute>) -> syn::Result<Vec<Self>> {
