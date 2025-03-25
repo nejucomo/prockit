@@ -4,8 +4,6 @@ use prockit::DeriveImpls as _;
 use crate::fvia::FromVia;
 
 mod fvia;
-mod metapivot;
-mod simpath;
 mod target;
 
 #[proc_macro_derive(From, attributes(from_via))]

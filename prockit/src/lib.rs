@@ -1,5 +1,8 @@
 mod deriveimpls;
-mod spanerror;
+mod diwithattrs;
+pub mod ext;
+mod fromattr;
 
 pub use crate::deriveimpls::DeriveImpls;
-pub use crate::spanerror::SpanErrorExt;
+pub use crate::diwithattrs::{DeriveImplsWithAttrs, DeriveWithAttrsInput};
+pub use crate::fromattr::FromAttr;

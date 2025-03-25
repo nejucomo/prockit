@@ -1,16 +1,35 @@
 use proc_macro2::TokenStream;
-use prockit::DeriveImpls;
+use prockit::{DeriveImplsWithAttrs, DeriveWithAttrsInput};
 use quote::{ToTokens, quote};
 
-use crate::target::{TargetVia, TargetsVia};
+use crate::target::TargetVia;
 
 pub struct FromVia {
     pub ident: syn::Ident,
     pub generics: syn::Generics,
-    pub targets: TargetsVia,
+    pub targets: Vec<TargetVia>,
 }
 
-impl DeriveImpls for FromVia {}
+impl DeriveImplsWithAttrs for FromVia {
+    type Attr = TargetVia;
+
+    fn try_from_derive_with_attrs_input(
+        dwai: DeriveWithAttrsInput<TargetVia>,
+    ) -> syn::Result<Self> {
+        let DeriveWithAttrsInput {
+            attrs: targets,
+            ident,
+            generics,
+            ..
+        } = dwai;
+
+        Ok(FromVia {
+            ident,
+            generics,
+            targets,
+        })
+    }
+}
 
 impl ToTokens for FromVia {
     fn to_tokens(&self, tokens: &mut TokenStream) {
@@ -34,26 +53,5 @@ impl ToTokens for FromVia {
             }
             .to_tokens(tokens)
         }
-    }
-}
-
-impl TryFrom<syn::DeriveInput> for FromVia {
-    type Error = syn::Error;
-
-    fn try_from(di: syn::DeriveInput) -> syn::Result<Self> {
-        let syn::DeriveInput {
-            ident,
-            generics,
-            attrs,
-            ..
-        } = di;
-
-        let targets = TargetsVia::try_from(attrs)?;
-
-        Ok(Self {
-            ident,
-            generics,
-            targets,
-        })
     }
 }

@@ -17,7 +17,21 @@ pub trait SpanErrorExt: Spanned + Sized {
         E: Display,
     {
         let span = self.span();
-        f(self).map_err(|e| syn::Error::new(span, e))
+        f(self).map_err(|e| span.spanned_error(e))
+    }
+
+    fn spanned_err<T, E>(&self, e: E) -> syn::Result<T>
+    where
+        E: Display,
+    {
+        Err(self.spanned_error(e))
+    }
+
+    fn spanned_error<E>(&self, e: E) -> syn::Error
+    where
+        E: Display,
+    {
+        syn::Error::new(self.span(), e)
     }
 }
 
