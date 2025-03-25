@@ -1,6 +1,6 @@
 //! A simple framework for defining proc macros.
 //!
-//! The primary traits for proc macro implementations are the [ProcMacroDerive], (TODO) `ProcMacro`, and (TODO) `ProcMacroAttribute`.
+//! The primary traits for proc macro implementations are the [ProcMacroDerive], `ProcMacro` (TODO), and `ProcMacroAttribute` (TODO).
 #![deny(missing_docs)]
 
 mod deriveimpls;
